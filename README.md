@@ -18,3 +18,7 @@
     - [X] show exit code
   - [X] help menu
   - [X] version control
+
+## 📄 License
+
+SlimyTerminal is open-source and is under the [MIT License](LICENSE).
