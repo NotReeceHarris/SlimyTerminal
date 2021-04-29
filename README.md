@@ -5,5 +5,16 @@
 </p>
 </p>
 
-# SlimyTerminal
-🐍 A customizable CLI with built-in features and command error checking.
+---
+
+## Todo
+- [ ] create error checking system.
+## Done
+- [X] config menu
+  - [X] color picker
+  - [X] terminal tab elements
+  - [X] Toggle elements
+    - [X] auto clear command
+    - [X] show exit code
+  - [X] help menu
+  - [X] version control
