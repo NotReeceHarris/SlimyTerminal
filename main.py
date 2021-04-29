@@ -4,6 +4,7 @@ import os
 import json
 import socket
 import time
+import getpass
 
 __logs__ = []
 __Version__ = '1.0'
@@ -37,13 +38,13 @@ def configMenu():
     while True:
         config = json.load(open("config.json"))
 
-        a = color('RED') + "X" + color('RESET')
-        b = color('RED') + "X" + color('RESET')
-        c = color('RED') + "X" + color('RESET')
+        a = color('RED') + "N" + color('RESET')
+        b = color('RED') + "N" + color('RESET')
+        c = color('RED') + "N" + color('RESET')
 
-        if config['clearEachCommand']:  a = color('GREEN') + "✓" + color('RESET')
-        if config['showExitCode']:  b = color('GREEN') + "✓" + color('RESET')
-        if config['errorCheck']:  c = color('GREEN') + "✓" + color('RESET')
+        if config['clearEachCommand']:  a = color('GREEN') + "Y" + color('RESET')
+        if config['showExitCode']:  b = color('GREEN') + "Y" + color('RESET')
+        if config['errorCheck']:  c = color('GREEN') + "Y" + color('RESET')
 
         menu = f'''           
         ┌────{color(config["terminalColor"])}Config{color("RESET")}─{color(config["terminalColor"])}Menu{color("RESET")}─────────────────────────────────┐       
@@ -98,13 +99,13 @@ def configMenu():
                 f = '-'
                 g = '-'
 
-                if config['terminalColor'] == 'WHITE':  a = u'\u001b[37m✓\u001b[0m'
-                elif config['terminalColor'] == 'RED':  b = u'\u001b[31m✓\u001b[0m'
-                elif config['terminalColor'] == 'GREEN':  c = u'\u001b[32m✓\u001b[0m'
-                elif config['terminalColor'] == 'YELLOW':  d = u'\u001b[33m✓\u001b[0m'
-                elif config['terminalColor'] == 'BLUE':  e = u'\u001b[34m✓\u001b[0m'
-                elif config['terminalColor'] == 'MAGENTA':  f = u'\u001b[35m✓\u001b[0m'
-                elif config['terminalColor'] == 'CYAN':  g = u'\u001b[36m✓\u001b[0m'
+                if config['terminalColor'] == 'WHITE':  a = u'\u001b[37mY\u001b[0m'
+                elif config['terminalColor'] == 'RED':  b = u'\u001b[31mY\u001b[0m'
+                elif config['terminalColor'] == 'GREEN':  c = u'\u001b[32mY\u001b[0m'
+                elif config['terminalColor'] == 'YELLOW':  d = u'\u001b[33mY\u001b[0m'
+                elif config['terminalColor'] == 'BLUE':  e = u'\u001b[34mY\u001b[0m'
+                elif config['terminalColor'] == 'MAGENTA':  f = u'\u001b[35mY\u001b[0m'
+                elif config['terminalColor'] == 'CYAN':  g = u'\u001b[36mY\u001b[0m'
 
                 __clear__()
                 menu = f'''           
@@ -166,13 +167,13 @@ def configMenu():
         if i == 5:
             while True:
 
-                a = color('RED') + "X" + color('RESET')
-                b = color('RED') + "X" + color('RESET')
-                c = color('RED') + "X" + color('RESET')
+                a = color('RED') + "N" + color('RESET')
+                b = color('RED') + "N" + color('RESET')
+                c = color('RED') + "N" + color('RESET')
 
-                if config['terminalLayout']['dir']: a = color('GREEN') + "✓" + color('RESET')
-                if config['terminalLayout']['user']: b = color('GREEN') + "✓" + color('RESET')
-                if config['terminalLayout']['ip']: c = color('GREEN') + "✓" + color('RESET')
+                if config['terminalLayout']['dir']: a = color('GREEN') + "Y" + color('RESET')
+                if config['terminalLayout']['user']: b = color('GREEN') + "Y" + color('RESET')
+                if config['terminalLayout']['ip']: c = color('GREEN') + "Y" + color('RESET')
 
                 menu = f'''           
         ┌────{color(config["terminalColor"])}Terminal{color("RESET")}─{color(config["terminalColor"])}Layout{color("RESET")}─────────────────────────┐       
@@ -262,10 +263,14 @@ def start():
         try:
 
             if config['terminalLayout']['dir']: 
-                __tabs__ += f'─[ {color("RESET") + os.getcwd()[:3]}{color(config["terminalColor"]) + os.getcwd()[3:] + color("RESET")} ]'.replace('\\',color("RESET")+"\\"+color(config["terminalColor"]))
-            
+                if os.name == 'nt':
+                    __tabs__ += f'─[ {color("RESET") + os.getcwd()[:3]}{color(config["terminalColor"]) + os.getcwd()[3:] + color("RESET")} ]'.replace('\\',color("RESET")+"\\"+color(config["terminalColor"]))
+                else:
+                    __tabs__ += f'─[ {color(config["terminalColor"]) + os.getcwd() + color("RESET")} ]'.replace('/', color("RESET")+'/'+color(config["terminalColor"] ))
+
+
             if config['terminalLayout']['user']: 
-                __tabs__ += f'─[ {color(config["terminalColor"]) +  os.getlogin().lower().replace(" ",color("RESET")+"-"+color(config["terminalColor"])) + color("RESET")}@{color(config["terminalColor"]) +  os.environ["COMPUTERNAME"].replace("-",color("RESET")+"-"+color(config["terminalColor"])) + color("RESET")} ]'
+                __tabs__ += f'─[ {color(config["terminalColor"]) +  getpass.getuser().lower().replace(" ",color("RESET")+"-"+color(config["terminalColor"])) + color("RESET")}@{color(config["terminalColor"]) +  socket.gethostname().replace("-",color("RESET")+"-"+color(config["terminalColor"])) + color("RESET")} ]'
             
             if config['terminalLayout']['ip']:
                 
@@ -353,6 +358,11 @@ def start():
 if __name__ == '__main__':
     if os.name == 'nt':
         os.system(f'TITLE Slimy Terminal{__Version__} [{os.getlogin()}] (https://github.com/NotReeceHarris/SlimyTerminal)')
+
+    else:
+        if not os.geteuid() == 0:
+            print('Please run as root')
+            exit()
 
     try: # Creates the config file on first loadup
         f = open('config.json')
