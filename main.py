@@ -7,7 +7,7 @@ import time
 
 __logs__ = []
 __Version__ = '1.0'
-
+ 
 def __clear__(): 
     os.system('cls' if os.name == 'nt' else 'clear')
 
