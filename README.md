@@ -9,8 +9,10 @@
 
 #### Config menu
 <img src='https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/config-menu.png?raw=true' height='150'>
+
 #### Color menu
 <img src='https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/color-menu.png?raw=true' height='150'>
+
 #### Tab menu
 <img src='https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/tab-menu.png?raw=true' height='120'>
 
