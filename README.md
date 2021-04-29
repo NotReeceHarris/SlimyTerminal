@@ -7,15 +7,6 @@
 
 ---
 
-## :memo: Tests
-
-Operating System  | Python 3.5 | Python 3.6 | Python 3.7 | Python 3.8 | Python 3.9
-------------- | ------------- | ------------- | ------------- | ------------- | -------------
-Windows 10  |   ✔️ | ✔️|   ✔️ |   ✔️ |   ✔️ |
-Debian 10.9.0  |   :hourglass: | :hourglass:|   :hourglass: |   :hourglass: |   :hourglass: |
-Ubuntu 20.04  |   :hourglass: | :hourglass:|   :hourglass: |   :hourglass: |   :hourglass: |
-
-
 ## ✔️ Todo List
 
 ### Todo
@@ -29,6 +20,14 @@ Ubuntu 20.04  |   :hourglass: | :hourglass:|   :hourglass: |   :hourglass: |   :
     - [X] show exit code
   - [X] help menu
   - [X] version control
+
+## :memo: Tests
+
+Operating System  | Python 3.5 | Python 3.6 | Python 3.7 | Python 3.8 | Python 3.9
+------------- | ------------- | ------------- | ------------- | ------------- | -------------
+Windows 10  |   ✔️ | ✔️|   ✔️ |   ✔️ |   ✔️ |
+Debian 10.9.0  |   :hourglass: | :hourglass:|   :hourglass: |   :hourglass: |   :hourglass: |
+Ubuntu 20.04  |   :hourglass: | :hourglass:|   :hourglass: |   :hourglass: |   :hourglass: |
 
 ## 🚀 Contributions
 
