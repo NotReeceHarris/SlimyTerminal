@@ -7,7 +7,7 @@ import time
 
 __logs__ = []
 __Version__ = '1.0'
- 
+
 def __clear__(): 
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -52,7 +52,7 @@ def configMenu():
         │    3 - [{c}] Error checking.                     │
         │    4 - [-] Set terminal color.                 │
         │    5 - [-] Terminal layout.                    │
-        │    0 - Exit                                    │ 
+        │    0 - Exit                                    │
         └────────────────────────────────────────────────┘
         '''
         while True:
@@ -351,7 +351,8 @@ def start():
             pass
 
 if __name__ == '__main__':
-    os.system(f'TITLE Slimy Terminal{__Version__} [{os.getlogin()}] (https://github.com/NotReeceHarris/SlimyTerminal)')
+    if os.name == 'nt':
+        os.system(f'TITLE Slimy Terminal{__Version__} [{os.getlogin()}] (https://github.com/NotReeceHarris/SlimyTerminal)')
 
     try: # Creates the config file on first loadup
         f = open('config.json')
