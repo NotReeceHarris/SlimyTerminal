@@ -52,7 +52,7 @@ def configMenu():
         │    3 - [{c}] Error checking.                     │
         │    4 - [-] Set terminal color.                 │
         │    5 - [-] Terminal layout.                    │
-        │    0 - Exit                                    │
+        │    0 - Exit                                    │ 
         └────────────────────────────────────────────────┘
         '''
         while True:
