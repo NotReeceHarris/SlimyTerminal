@@ -31,7 +31,6 @@ def color(ColorName):
         return u'\u001b[0m'
 
 def configMenu():
-
     __clear__()
 
     while True:
