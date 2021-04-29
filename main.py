@@ -3,6 +3,7 @@
 import os
 import json
 import socket
+import time
 
 __logs__ = []
 __Version__ = '1.0'
@@ -48,7 +49,7 @@ def configMenu():
         ┌────{color(config["terminalColor"])}Config{color("RESET")}─{color(config["terminalColor"])}Menu{color("RESET")}─────────────────────────────────┐       
         │    1 - [{a}] Clear CLI each command.             │
         │    2 - [{b}] Show command exit code.             │
-        │    3 - [{c}] Error checking                      │
+        │    3 - [{c}] Error checking.                     │
         │    4 - [-] Set terminal color.                 │
         │    5 - [-] Terminal layout.                    │
         │    0 - Exit                                    │
@@ -232,6 +233,8 @@ def helpMenu():
         │    :l :logs    -   Show logs                   │
         │    :c :clear   -   Clear CLI                   │
         │    :C :config  -   Config Menu                 │
+        │    :g :github  -   Github repo                 │
+        │    :v :version -   Slimy Terminal Version      │
         └────────────────────────────────────────────────┘
     ''')
 
@@ -259,50 +262,50 @@ def start():
         try:
 
             if config['terminalLayout']['dir']: 
-                
-                __tabs__ += f'─[ {color("RESET") + os.getcwd()[:3]}{color(config["terminalColor"]) + os.getcwd()[3:] + color("RESET")} ]'
+                __tabs__ += f'─[ {color("RESET") + os.getcwd()[:3]}{color(config["terminalColor"]) + os.getcwd()[3:] + color("RESET")} ]'.replace('\\',color("RESET")+"\\"+color(config["terminalColor"]))
             
             if config['terminalLayout']['user']: 
-               
-                __tabs__ += f'─[ {color(config["terminalColor"]) +  os.getlogin().lower().replace(" ","-") + color("RESET")}@{color(config["terminalColor"]) +  os.environ["COMPUTERNAME"].replace(" ","-") + color("RESET")} ]'
+                __tabs__ += f'─[ {color(config["terminalColor"]) +  os.getlogin().lower().replace(" ",color("RESET")+"-"+color(config["terminalColor"])) + color("RESET")}@{color(config["terminalColor"]) +  os.environ["COMPUTERNAME"].replace("-",color("RESET")+"-"+color(config["terminalColor"])) + color("RESET")} ]'
             
             if config['terminalLayout']['ip']:
+                
+                LocIp = '-----'
 
-                s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-                s.connect(("8.8.8.8", 80))
-                LocIp = s.getsockname()[0]
-                s.close()
-                __tabs__ += f'─[ {color(config["terminalColor"]) + LocIp + color("RESET")} ]'
+                try:
+                    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                    s.connect(("8.8.8.8", 80))
+                    LocIp = s.getsockname()[0]
+                    s.close()
+
+                except:
+                    pass
+
+                __tabs__ += f'─[ {color(config["terminalColor"]) + LocIp + color("RESET")} ]'.replace('.',color("RESET")+"."+color(config["terminalColor"]))
 
             if not config['terminalLayout']['dir'] and not config['terminalLayout']['user'] and not config['terminalLayout']['ip']:
-
                 __spacer__ = u'\033[F'
                 __cursor__ = '──>'
 
             elif config['terminalLayout']['dir'] or config['terminalLayout']['user'] or config['terminalLayout']['ip']:
 
                 if config['showExitCode'] and __statusCode__ != '':
-                   
                     __spacer__ = '├──'
                     __cursor__ = '└─>'
 
                 else:
-
                     __spacer__ = '┌──'
                     __cursor__ = '└─>'
 
             elif not config['terminalLayout']['dir'] and not config['terminalLayout']['user'] and not config['terminalLayout']['ip'] and config['showExitCode']:
-                
                 __spacer__ = u'\033[F'
                 __cursor__ = '└─>'
 
             if __statusCode__ == '' or config['showExitCode'] == False:
-
                 i = str(input(f'''
     {__spacer__}{__tabs__}
     {__cursor__} '''))
-            elif __statusCode__ != '' and config['showExitCode'] == True:
 
+            elif __statusCode__ != '' and config['showExitCode'] == True:
                 i = str(input(f'''
     ┌───[ {color(config["terminalColor"]) + __statusCode__ + color('RESET')} ]
     {__spacer__}{__tabs__}
@@ -315,11 +318,26 @@ def start():
 
             if config['clearEachCommand']: __clear__()
 
-            if i.lower() == ':quit' or i.lower() == ':q': break
-            elif i.lower() == ':help' or i.lower() == ':h': helpMenu()
-            elif i.lower() == ':logs' or i.lower() == ':l': logsMenu()
-            elif i.lower() == ':clear' or i == ':c': __clear__()
-            elif i.lower() == ':config' or i == ':C': configMenu()
+            if i.lower() == ':quit' or i.lower() == ':q': 
+                break
+
+            elif i.lower() == ':help' or i.lower() == ':h': 
+                helpMenu()
+
+            elif i.lower() == ':logs' or i.lower() == ':l': 
+                logsMenu()
+
+            elif i.lower() == ':clear' or i == ':c': 
+                __clear__()
+
+            elif i.lower() == ':config' or i == ':C': 
+                configMenu()
+
+            elif i.lower() == ':github' or i.lower() == ':g': 
+                print('https://github.com/NotReeceHarris/SlimyTerminal')
+
+            elif i.lower() == ':version' or i.lower() == ':v': 
+                print(f'Slimy Terminal: {__Version__}')
 
             else:
                 StatusNom = os.system(i)
@@ -334,14 +352,18 @@ def start():
 
 if __name__ == '__main__':
     os.system(f'TITLE Slimy Terminal{__Version__} [{os.getlogin()}] (https://github.com/NotReeceHarris/SlimyTerminal)')
-    try:
+
+    try: # Creates the config file on first loadup
         f = open('config.json')
     except IOError:
+        print('No config file found! Creating one.')
+        time.sleep(0.5)
         f = open('config.json', 'w')
         f.write('{"clearEachCommand": true,"showExitCode":true,"terminalColor":"GREEN","terminalLayout":{"dir":true,"user":false,"ip":false},"errorCheck":true}')
     finally:
         f.close()
     
     __clear__()
+
     helpMenu()
     start()
