@@ -7,6 +7,8 @@
 
 ---
 
+<img src='https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/config-menu.png?raw=true' height='150'>
+
 ## Todo
 - [ ] create error checking system.
 ## Done
