@@ -11,7 +11,7 @@
 
 ### Todo
 - [ ] create error checking system
-- [ ] moving between locations
+- [ ] moving between locations (ADS)
 ### Done
 - [X] config menu
   - [X] color picker
