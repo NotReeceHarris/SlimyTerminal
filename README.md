@@ -6,4 +6,4 @@
 </p>
 
 # SlimyTerminal
-🐍 A customizable CLI with built in features and command error checking.
+🐍 A customizable CLI with built-in features and command error checking.
