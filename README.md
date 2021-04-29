@@ -10,7 +10,8 @@
 ## ✔️ Todo List
 
 ### Todo
-- [ ] create error checking system.
+- [ ] create error checking system
+- [ ] moving between locations
 ### Done
 - [X] config menu
   - [X] color picker
@@ -26,7 +27,7 @@
 Operating System  | Python 3.5 | Python 3.6 | Python 3.7 | Python 3.8 | Python 3.9
 ------------- | ------------- | ------------- | ------------- | ------------- | -------------
 Windows 10  |   ✔️ | ✔️|   ✔️ |   ✔️ |   ✔️ |
-Debian 10.9.0  |   :hourglass: | :hourglass:|   :hourglass: |   :hourglass: |   :hourglass: |
+Debian 10.9.0  |   :hourglass: | :hourglass:|   :hourglass: |   ✔️ |   ✔️ |
 Ubuntu 20.04  |   :hourglass: | :hourglass:|   :hourglass: |   :hourglass: |   :hourglass: |
 
 ## 🚀 Contributions
