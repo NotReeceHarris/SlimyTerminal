@@ -7,7 +7,7 @@
 
 ---
 
-<img src='https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/terminal-carbon.png?raw=true'>
+<img src='https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/terminal-carbon.gif?raw=true'>
 
 ## ⚙️Setup
 SlimyTerminal is simple and portable meaning little requirement and no manual setup, config files are generated on first startup automatic and without manual assistance, to start SlimyTerminal just follow these simple steps: <br>
