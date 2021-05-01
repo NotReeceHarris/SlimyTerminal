@@ -10,6 +10,7 @@ from utils.ui import color, __clear__
 from utils.exitCodes import exitCodes
 from utils.helpMenu import helpMenu
 from utils.configMenu import configMenu
+from utils.versionControl import checkUpdate
 
 __logs__ = []
 __Version__ = '1.0'
@@ -157,6 +158,7 @@ if __name__ == '__main__':
         __configPath__ = os.path.dirname(os.path.abspath('config.json')).replace('\\','/') + '/config.json'
         f.close()
     
+    checkUpdate(__Version__)
     __clear__()
     helpMenu(__configPath__)
     start()
