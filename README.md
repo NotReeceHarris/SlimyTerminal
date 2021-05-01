@@ -14,7 +14,7 @@ SlimyTerminal is simple and portable meaning little requirement and no manual se
 `$ git clone https://github.com/NotReeceHarris/SlimyTerminal.git` <br>
 `$ cd SlimyTerminal` <br>
 `$ pip install -r requirements.txt` <br>
-`$ python3 main.py` <br>
+`$ python3 sterm.py` <br>
 
 ## :memo: Tests
 
