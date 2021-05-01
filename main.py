@@ -370,7 +370,7 @@ if __name__ == '__main__':
 
     else:
         if not os.geteuid() == 0:
-            print('Please run as root')
+            print(f'Please run as {color("RED") + "root" + color("RESET")}!')
             exit()
 
     try: # Creates the config file on first loadup
