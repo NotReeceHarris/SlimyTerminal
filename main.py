@@ -5,6 +5,7 @@ import json
 import socket
 import time
 import getpass
+from utils import errorCodes
 
 __logs__ = []
 __Version__ = '1.0'
@@ -13,39 +14,27 @@ __configPath__ = ''
 def __clear__(): 
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def color(ColorName):
+def color(C):
+    if C == 'WHITE':        return u'\u001b[37m'
+    elif C == 'RED':        return u'\u001b[31m'
+    elif C == 'GREEN':      return u'\u001b[32m'
+    elif C == 'YELLOW':     return u'\u001b[33m'
+    elif C == 'BLUE':       return u'\u001b[34m'
+    elif C == 'MAGENTA':    return u'\u001b[35m'
+    elif C == 'CYAN':       return u'\u001b[36m'
+    elif C == 'RESET':      return u'\u001b[0m'
+    else:                   return u'\u001b[0m'
 
-    if ColorName == 'WHITE':
-        return u'\u001b[37m'
-    elif ColorName == 'RED':
-        return u'\u001b[31m'
-    elif ColorName == 'GREEN':
-        return u'\u001b[32m'
-    elif ColorName == 'YELLOW':
-        return u'\u001b[33m'
-    elif ColorName == 'BLUE':
-        return u'\u001b[34m'
-    elif ColorName == 'MAGENTA':
-        return u'\u001b[35m'
-    elif ColorName == 'CYAN':
-        return u'\u001b[36m'
-    elif ColorName == 'RESET':
-        return u'\u001b[0m'
 
 def configMenu():
-
     __clear__()
 
     while True:
         config = json.load(open(__configPath__))
 
-        a = color('RED') + "N" + color('RESET')
-        b = color('RED') + "N" + color('RESET')
-        c = color('RED') + "N" + color('RESET')
-
-        if config['clearEachCommand']:  a = color('GREEN') + "Y" + color('RESET')
-        if config['showExitCode']:  b = color('GREEN') + "Y" + color('RESET')
-        if config['errorCheck']:  c = color('GREEN') + "Y" + color('RESET')
+        a = u'\u001b[32mY\u001b[0m'     if config['clearEachCommand']   else '\u001b[31mN\u001b[0m'
+        b = u'\u001b[32mY\u001b[0m'     if config['showExitCode']       else '\u001b[31mN\u001b[0m'
+        c = u'\u001b[32mY\u001b[0m'     if config['errorCheck']         else '\u001b[31mN\u001b[0m'
 
         menu = f'''           
         ┌────{color(config["terminalColor"])}Config{color("RESET")}─{color(config["terminalColor"])}Menu{color("RESET")}─────────────────────────────────┐       
@@ -57,83 +46,69 @@ def configMenu():
         │    0 - Exit                                    │
         └────────────────────────────────────────────────┘
         '''
+
         while True:
             try:
-                print(menu)
-                i = int(input('        > '))
-                __clear__()
+                i = int(input(f'{menu}\n        > '))
                 break
 
             except:
-                __clear__()
                 print('Invalid Option')
-        
-        if i == 0: 
+            finally:
+                __clear__()
+
+
+        if i == 0: # Exit config Menu.
             break
 
-        elif i == 1:
-            t = True
-            if config['clearEachCommand']: t = False
-            config['clearEachCommand'] = t
+        elif i == 1: # Toggle clear after command.
+            config['clearEachCommand'] = False if config['clearEachCommand'] else True
             json.dump(config, open("config.json", "w"))
 
-        elif i == 2:
-            t = True
-            if config['showExitCode']: t = False
-            config['showExitCode'] = t
+        elif i == 2: # Toggle exit codes.
+            config['showExitCode'] = False if config['showExitCode'] else True
             json.dump(config, open("config.json", "w"))
 
-        elif i == 3:
-            t = True
-            if config['errorCheck']: t = False
-            config['errorCheck'] = t
+        elif i == 3: # Toggle error checking.
+            config['errorCheck'] = False if config['errorCheck'] else True
             json.dump(config, open("config.json", "w"))
 
-        elif i == 4:
+
+        elif i == 4: # Select terminal color.
             while True:
+                WHITE = u'\u001b[37mY\u001b[0m'     if config['terminalColor'] == 'WHITE'   else '-'
+                RED = u'\u001b[31mY\u001b[0m'       if config['terminalColor'] == 'RED'     else '-'
+                GREEN = u'\u001b[32mY\u001b[0m'     if config['terminalColor'] == 'GREEN'   else '-'
+                YELLOW = u'\u001b[33mY\u001b[0m'    if config['terminalColor'] == 'YELLOW'  else '-'
+                BLUE = u'\u001b[34mY\u001b[0m'      if config['terminalColor'] == 'BLUE'    else '-'
+                MAGENTA = u'\u001b[35mY\u001b[0m'   if config['terminalColor'] == 'MAGENTA' else '-'
+                CYAN = u'\u001b[36mY\u001b[0m'      if config['terminalColor'] == 'CYAN'    else '-'
 
-                a = '-'
-                b = '-'
-                c = '-'
-                d = '-'
-                e = '-'
-                f = '-'
-                g = '-'
-
-                if config['terminalColor'] == 'WHITE':  a = u'\u001b[37mY\u001b[0m'
-                elif config['terminalColor'] == 'RED':  b = u'\u001b[31mY\u001b[0m'
-                elif config['terminalColor'] == 'GREEN':  c = u'\u001b[32mY\u001b[0m'
-                elif config['terminalColor'] == 'YELLOW':  d = u'\u001b[33mY\u001b[0m'
-                elif config['terminalColor'] == 'BLUE':  e = u'\u001b[34mY\u001b[0m'
-                elif config['terminalColor'] == 'MAGENTA':  f = u'\u001b[35mY\u001b[0m'
-                elif config['terminalColor'] == 'CYAN':  g = u'\u001b[36mY\u001b[0m'
-
-                __clear__()
                 menu = f'''           
         ┌────{color(config["terminalColor"])}Color{color("RESET")}─{color(config["terminalColor"])}Menu{color("RESET")}──────────────────────────────┐       
-        │    1 - [{a}] {color('WHITE') + "White" + color('RESET')}                           │
-        │    2 - [{b}] {color('RED') + "Red" + color('RESET')}                             │
-        │    3 - [{c}] {color('GREEN') + "Green" + color('RESET')}                           │
-        │    4 - [{d}] {color('YELLOW') + "Yellow" + color('RESET')}                          │
-        │    5 - [{e}] {color('BLUE') + "Blue" + color('RESET')}                            │
-        │    6 - [{f}] {color('MAGENTA') + "Magenta" + color('RESET')}                         │
-        │    7 - [{g}] {color('CYAN') + "Cyan" + color('RESET')}                            │
+        │    1 - [{WHITE}] {color('WHITE') + "White" + color('RESET')}                           │
+        │    2 - [{RED}] {color('RED') + "Red" + color('RESET')}                             │
+        │    3 - [{GREEN}] {color('GREEN') + "Green" + color('RESET')}                           │
+        │    4 - [{YELLOW}] {color('YELLOW') + "Yellow" + color('RESET')}                          │
+        │    5 - [{BLUE}] {color('BLUE') + "Blue" + color('RESET')}                            │
+        │    6 - [{MAGENTA}] {color('MAGENTA') + "Magenta" + color('RESET')}                         │
+        │    7 - [{CYAN}] {color('CYAN') + "Cyan" + color('RESET')}                            │
         │    0 - Exit                                │
         └────────────────────────────────────────────┘
                     '''
                 while True:
                     try:
-                        print(menu)
-                        i = int(input('        > '))
+                        i = int(input(f'{menu}\n        > '))
                         __clear__()
                         break
 
                     except:
                         __clear__()
-                        print('Invalid Option')
-                        print(menu)
+                        print(f'Invalid Option')
 
-                if i == 0: break
+                if i == 0: 
+                    break
+
                 elif i == 1: 
                     config['terminalColor'] = 'WHITE'
                     json.dump(config, open("config.json", "w"))
@@ -163,18 +138,15 @@ def configMenu():
                     json.dump(config, open("config.json", "w"))
 
                 else: 
+                    __clear__()
                     print('Invalid Option')
 
         if i == 5:
             while True:
 
-                a = color('RED') + "N" + color('RESET')
-                b = color('RED') + "N" + color('RESET')
-                c = color('RED') + "N" + color('RESET')
-
-                if config['terminalLayout']['dir']: a = color('GREEN') + "Y" + color('RESET')
-                if config['terminalLayout']['user']: b = color('GREEN') + "Y" + color('RESET')
-                if config['terminalLayout']['ip']: c = color('GREEN') + "Y" + color('RESET')
+                a = u'\u001b[32mY\u001b[0m'     if config['terminalLayout']['dir']  else u'\u001b[31mN\u001b[0m'
+                b = u'\u001b[32mY\u001b[0m'     if config['terminalLayout']['user'] else u'\u001b[31mN\u001b[0m'
+                c = u'\u001b[32mY\u001b[0m'     if config['terminalLayout']['ip']   else u'\u001b[31mN\u001b[0m'
 
                 menu = f'''           
         ┌────{color(config["terminalColor"])}Terminal{color("RESET")}─{color(config["terminalColor"])}Layout{color("RESET")}─────────────────────────┐       
@@ -187,8 +159,7 @@ def configMenu():
                 
                 while True:
                     try:
-                        print(menu)
-                        i = int(input('        > '))
+                        i = int(input(f'{menu}\n        > '))
                         __clear__()
                         break
 
@@ -200,21 +171,16 @@ def configMenu():
                     break
 
                 elif i == 1:
-                    t = True
-                    if config['terminalLayout']['dir']: t = False
-                    config['terminalLayout']['dir'] = t
+                    config['terminalLayout']['dir'] = False if config['terminalLayout']['dir'] else True
                     json.dump(config, open("config.json", "w"))
 
                 elif i == 2:
-                    t = True
-                    if config['terminalLayout']['user']: t = False
-                    config['terminalLayout']['user'] = t
+                    config['terminalLayout']['user'] = False if config['terminalLayout']['user'] else True
                     json.dump(config, open("config.json", "w"))
 
                 elif i == 3:
-                    t = True
-                    if config['terminalLayout']['ip']: t = False
-                    config['terminalLayout']['ip'] = t
+                    
+                    config['terminalLayout']['ip'] = False if config['terminalLayout']['ip'] else True
                     json.dump(config, open("config.json", "w"))
 
                 else:
@@ -354,12 +320,7 @@ def start():
                     __statusCode__ = 'Error'
 
             else:
-                StatusNom = os.system(i)
-
-                if StatusNom == 0:
-                    __statusCode__ = 'Success'
-                elif StatusNom == 1:
-                    __statusCode__ = 'Error'
+                __statusCode__ = errorCodes(os.system(i), os.name)
 
         except ValueError:
             pass
@@ -369,22 +330,22 @@ if __name__ == '__main__':
         os.system(f'TITLE Slimy Terminal{__Version__} [{os.getlogin()}] (https://github.com/NotReeceHarris/SlimyTerminal)')
 
     else:
-        if not os.geteuid() == 0:
+        if not os.geteuid() == 0: # Tests for root if not authenticated exits with code '5'
             print(f'Please run as {color("RED") + "root" + color("RESET")}!')
-            exit()
+            os._exit(5)
 
     try: # Creates the config file on first loadup
         f = open('config.json')
+
     except IOError:
         print('No config file found! Creating one.')
-        time.sleep(0.5)
         f = open('config.json', 'w')
         f.write('{"clearEachCommand": true,"showExitCode":true,"terminalColor":"GREEN","terminalLayout":{"dir":true,"user":false,"ip":false},"errorCheck":true}')
+    
     finally:
         __configPath__ = os.path.dirname(os.path.abspath('config.json')).replace('\\','/') + '/config.json'
         f.close()
     
     __clear__()
-
     helpMenu()
     start()
