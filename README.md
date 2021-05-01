@@ -7,20 +7,14 @@
 
 ---
 
-## ✔️ Todo List
+<img src='https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/terminal-carbon.png?raw=true'>
 
-### Todo
-- [ ] create error checking system
-- [ ] version control
-### Done
-- [X] config menu
-  - [X] color picker
-  - [X] terminal tab elements
-  - [X] Toggle elements
-    - [X] auto clear command
-    - [X] show exit code
-- [X] help menu
-- [X] moving between locations (ADS)
+## ⚙️Setup
+SlimyTerminal is simple and portable meaning little requirement and no manual setup, config files are generated on first startup automatic and without manual assistance, to start SlimyTerminal just follow these simple steps: <br>
+`$ git clone https://github.com/NotReeceHarris/SlimyTerminal.git` <br>
+`$ cd SlimyTerminal` <br>
+`$ pip install -r requirements.txt` <br>
+`$ python3 main.py` <br>
 
 ## :memo: Tests
 
