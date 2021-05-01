@@ -8,6 +8,7 @@ import getpass
 
 __logs__ = []
 __Version__ = '1.0'
+__configPath__ = ''
 
 def __clear__(): 
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -36,7 +37,7 @@ def configMenu():
     __clear__()
 
     while True:
-        config = json.load(open("config.json"))
+        config = json.load(open(__configPath__))
 
         a = color('RED') + "N" + color('RESET')
         b = color('RED') + "N" + color('RESET')
@@ -225,7 +226,7 @@ def configMenu():
 
 def helpMenu():
 
-    config = json.load(open("config.json"))
+    config = json.load(open(__configPath__))
 
     print(f'''           
         ┌────{color(config["terminalColor"])}Help{color("RESET")}─{color(config["terminalColor"])}Menu{color("RESET")}───────────────────────────────────┐ 
@@ -241,7 +242,7 @@ def helpMenu():
 
 def logsMenu():
 
-    config = json.load(open("config.json"))
+    config = json.load(open(__configPath__))
 
     print(f'        ┌────{color(config["terminalColor"])}Log{color("RESET")}─{color(config["terminalColor"])}Menu{color("RESET")}─────────────────────────────────────\n        │')
     for x in __logs__:
@@ -258,7 +259,7 @@ def start():
         __spacer__ = ''
         __cursor__ = ''
 
-        config = json.load(open("config.json"))
+        config = json.load(open(__configPath__))
         
         try:
 
@@ -343,6 +344,14 @@ def start():
 
             elif i.lower() == ':version' or i.lower() == ':v': 
                 print(f'Slimy Terminal: {__Version__}')
+            
+            elif i.startswith('cd'):
+                try:
+                    os.chdir(i[3:])
+                    __statusCode__ = 'Success'
+                except:
+                    print(f'Unknown Directory "{color(config["terminalColor"]) + i[3:] + color("RESET")}"')
+                    __statusCode__ = 'Error'
 
             else:
                 StatusNom = os.system(i)
@@ -372,6 +381,7 @@ if __name__ == '__main__':
         f = open('config.json', 'w')
         f.write('{"clearEachCommand": true,"showExitCode":true,"terminalColor":"GREEN","terminalLayout":{"dir":true,"user":false,"ip":false},"errorCheck":true}')
     finally:
+        __configPath__ = os.path.dirname(os.path.abspath('config.json')).replace('\\','/') + '/config.json'
         f.close()
     
     __clear__()
