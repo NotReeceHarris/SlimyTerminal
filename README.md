@@ -29,6 +29,9 @@ Slimy terminal is open to contributions, but we recommend creating an issue or r
 
 For more details visit the [Contribution](CONTRIBUTING.md) doc.<br/>
 
+## ✍🏻 Code of Conduct
+Read the SlimyTerminal [Code of Conduct]() for more details.
+
 ## 📄 License
 
 SlimyTerminal is open-source and is under the [MIT License](LICENSE).
