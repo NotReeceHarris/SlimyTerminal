@@ -9,6 +9,7 @@
 
 ## ⚙️Setup
 SlimyTerminal is simple and portable meaning little requirement and no manual setup, config files are generated on first startup automatic and without manual assistance, to start SlimyTerminal just follow these simple steps: <br>
+
 `$ git clone https://github.com/NotReeceHarris/SlimyTerminal.git` <br>
 `$ cd SlimyTerminal` <br>
 `$ pip install -r requirements.txt` _(This is automated on startup)_ <br>
