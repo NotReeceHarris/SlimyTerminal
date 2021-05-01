@@ -23,7 +23,7 @@ def logsMenu():
     print('        │\n        └─────────────────────────────────────────────────')
 
 def start():
-    
+
     __statusCode__ = ''
 
     while True:
@@ -106,8 +106,8 @@ if __name__ == '__main__':
     finally:
         __configPath__ = os.path.dirname(os.path.abspath('config.json')).replace('\\','/') + '/config.json'
         f.close()
-    
+
     __clear__()
-    helpMenu(__configPath__)
     checkUpdate(__Version__)
+    helpMenu(__configPath__)
     start()
