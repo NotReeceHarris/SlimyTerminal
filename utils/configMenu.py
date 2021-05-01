@@ -17,14 +17,14 @@ def configMenu(__configPath__):
             c = u'\u001b[32mY\u001b[0m'     if config['errorCheck']         else '\u001b[31mN\u001b[0m'
 
             menu = f'''           
-            ┌────{color(config["terminalColor"])}Config{color("RESET")}─{color(config["terminalColor"])}Menu{color("RESET")}─────────────────────────────────┐       
-            │    1 - [{a}] Clear CLI each command.             │
-            │    2 - [{b}] Show command exit code.             │
-            │    3 - [{c}] Error checking.                     │
-            │    4 - [-] Set terminal color.                 │
-            │    5 - [-] Terminal layout.                    │
-            │    0 - Exit                                    │
-            └────────────────────────────────────────────────┘
+        ┌────{color(config["terminalColor"])}Config{color("RESET")}─{color(config["terminalColor"])}Menu{color("RESET")}─────────────────────────────────┐       
+        │    1 - [{a}] Clear CLI each command.             │
+        │    2 - [{b}] Show command exit code.             │
+        │    3 - [{c}] Error checking.                     │
+        │    4 - [-] Set terminal color.                 │
+        │    5 - [-] Terminal layout.                    │
+        │    0 - Exit                                    │
+        └────────────────────────────────────────────────┘
             '''
 
             while True:
@@ -65,16 +65,16 @@ def configMenu(__configPath__):
                     CYAN = u'\u001b[36mY\u001b[0m'      if config['terminalColor'] == 'CYAN'    else '-'
 
                     menu = f'''           
-            ┌────{color(config["terminalColor"])}Color{color("RESET")}─{color(config["terminalColor"])}Menu{color("RESET")}──────────────────────────────┐       
-            │    1 - [{WHITE}] {color('WHITE') + "White" + color('RESET')}                           │
-            │    2 - [{RED}] {color('RED') + "Red" + color('RESET')}                             │
-            │    3 - [{GREEN}] {color('GREEN') + "Green" + color('RESET')}                           │
-            │    4 - [{YELLOW}] {color('YELLOW') + "Yellow" + color('RESET')}                          │
-            │    5 - [{BLUE}] {color('BLUE') + "Blue" + color('RESET')}                            │
-            │    6 - [{MAGENTA}] {color('MAGENTA') + "Magenta" + color('RESET')}                         │
-            │    7 - [{CYAN}] {color('CYAN') + "Cyan" + color('RESET')}                            │
-            │    0 - Exit                                │
-            └────────────────────────────────────────────┘
+        ┌────{color(config["terminalColor"])}Color{color("RESET")}─{color(config["terminalColor"])}Menu{color("RESET")}──────────────────────────────┐       
+        │    1 - [{WHITE}] {color('WHITE') + "White" + color('RESET')}                           │
+        │    2 - [{RED}] {color('RED') + "Red" + color('RESET')}                             │
+        │    3 - [{GREEN}] {color('GREEN') + "Green" + color('RESET')}                           │
+        │    4 - [{YELLOW}] {color('YELLOW') + "Yellow" + color('RESET')}                          │
+        │    5 - [{BLUE}] {color('BLUE') + "Blue" + color('RESET')}                            │
+        │    6 - [{MAGENTA}] {color('MAGENTA') + "Magenta" + color('RESET')}                         │
+        │    7 - [{CYAN}] {color('CYAN') + "Cyan" + color('RESET')}                            │
+        │    0 - Exit                                │
+        └────────────────────────────────────────────┘
                         '''
                     while True:
                         try:
@@ -129,12 +129,12 @@ def configMenu(__configPath__):
                     c = u'\u001b[32mY\u001b[0m'     if config['terminalLayout']['ip']   else u'\u001b[31mN\u001b[0m'
 
                     menu = f'''           
-            ┌────{color(config["terminalColor"])}Terminal{color("RESET")}─{color(config["terminalColor"])}Layout{color("RESET")}─────────────────────────┐       
-            │    1 - [{a}] Show Directory                  │
-            │    2 - [{b}] Show User                       │
-            │    3 - [{c}] Show Local-Ip                   │
-            │    0 - Exit                                │
-            └────────────────────────────────────────────┘
+        ┌────{color(config["terminalColor"])}Terminal{color("RESET")}─{color(config["terminalColor"])}Layout{color("RESET")}─────────────────────────┐       
+        │    1 - [{a}] Show Directory                  │
+        │    2 - [{b}] Show User                       │
+        │    3 - [{c}] Show Local-Ip                   │
+        │    0 - Exit                                │
+        └────────────────────────────────────────────┘
                             '''
                     
                     while True:

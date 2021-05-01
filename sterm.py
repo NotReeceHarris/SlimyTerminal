@@ -119,6 +119,7 @@ def start():
                 print('https://github.com/NotReeceHarris/SlimyTerminal')
 
             elif i.lower() == ':version' or i.lower() == ':v': 
+                checkUpdate(__Version__)
                 print(f'Slimy Terminal: {__Version__}')
             
             elif i.startswith('cd'):
@@ -158,7 +159,7 @@ if __name__ == '__main__':
         __configPath__ = os.path.dirname(os.path.abspath('config.json')).replace('\\','/') + '/config.json'
         f.close()
     
-    checkUpdate(__Version__)
     __clear__()
     helpMenu(__configPath__)
+    checkUpdate(__Version__)
     start()
