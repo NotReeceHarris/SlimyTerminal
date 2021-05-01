@@ -8,7 +8,7 @@
 ---
 
 ## ⚙️Setup
-SlimyTerminal is simple and portable meaning no requirement or manual setup, config files are generated on first startup automatic and without manual assistance, to start SlimeyTerminal just follow these simple steps:
+SlimyTerminal is simple and portable meaning no requirement or manual setup, config files are generated on first startup automatic and without manual assistance, to start SlimyTerminal just follow these simple steps:
 - `$ git clone https://github.com/NotReeceHarris/SlimyTerminal.git`
 - `$ cd SlimyTerminal`
 - `$ python3 main.py`
