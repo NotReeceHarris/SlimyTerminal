@@ -11,6 +11,7 @@
 
 ### Todo
 - [ ] create error checking system
+- [ ] version control
 ### Done
 - [X] config menu
   - [X] color picker
@@ -19,7 +20,6 @@
     - [X] auto clear command
     - [X] show exit code
 - [X] help menu
-- [X] version control
 - [X] moving between locations (ADS)
 
 ## :memo: Tests
