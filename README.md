@@ -18,7 +18,6 @@
   - [X] Toggle elements
     - [X] auto clear command
     - [X] show exit code
- 
 - [X] help menu
 - [X] version control
 - [X] moving between locations (ADS)
