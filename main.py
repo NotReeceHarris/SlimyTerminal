@@ -42,7 +42,7 @@ def start():
                 if os.name == 'nt':
                     __tabs__ += f'─[ {color("RESET") + os.getcwd()[:3]}{color(config["terminalColor"]) + os.getcwd()[3:] + color("RESET")} ]'.replace('\\',color("RESET")+"\\"+color(config["terminalColor"]))
                 else:
-                    __tabs__ += f'─[ {color(config["terminalColor"]) + os.getcwd() + color("RESET")} ]'.replace('/', color("RESET")+'/'+color(config["terminalColor"] ))
+                    __tabs__ += f'─[ ~{color(config["terminalColor"]) + os.getcwd() + color("RESET")} ]'.replace('/', color("RESET")+'/'+color(config["terminalColor"] ))
 
 
             if config['terminalLayout']['user']: 
