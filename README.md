@@ -10,10 +10,11 @@
 <img src='https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/terminal-carbon.png?raw=true'>
 
 ## ⚙️Setup
-SlimyTerminal is simple and portable meaning no requirement or manual setup, config files are generated on first startup automatic and without manual assistance, to start SlimyTerminal just follow these simple steps:<br>
-`$git clone https://github.com/NotReeceHarris/SlimyTerminal.git`<br>
-`$cd SlimyTerminal`<br>
-`$python3 main.py`<br>
+SlimyTerminal is simple and portable meaning little requirement and no manual setup, config files are generated on first startup automatic and without manual assistance, to start SlimyTerminal just follow these simple steps: <br>
+`$ git clone https://github.com/NotReeceHarris/SlimyTerminal.git` <br>
+`$ cd SlimyTerminal` <br>
+`$ pip install -r requirements.txt` <br>
+`$ python3 main.py` <br>
 
 ## :memo: Tests
 
