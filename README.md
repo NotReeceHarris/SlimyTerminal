@@ -13,21 +13,6 @@ SlimyTerminal is simple and portable meaning no requirement or manual setup, con
 - `$ cd SlimyTerminal`
 - `$ python3 main.py`
 
-## ✔️ Todo List
-
-### Todo
-- [ ] create error checking system
-- [ ] version control
-### Done
-- [X] config menu
-  - [X] color picker
-  - [X] terminal tab elements
-  - [X] Toggle elements
-    - [X] auto clear command
-    - [X] show exit code
-- [X] help menu
-- [X] moving between locations (ADS)
-
 ## :memo: Tests
 
 Operating System  | Python 3.7 | Python 3.8 | Python 3.9
