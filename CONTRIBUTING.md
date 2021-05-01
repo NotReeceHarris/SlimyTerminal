@@ -4,4 +4,4 @@ Slimy terminal is open to contributions, but we recommend creating an issue or r
 
 ## 📝 Code of conduct
 
-Read the SlimyTerminal [Code of Conduct](#) for more details.
+Read the SlimyTerminal [Code of Conduct](CODE_OF_CONDUCT.md) for more details.
