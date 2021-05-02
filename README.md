@@ -7,6 +7,17 @@
 
 ---
 
+<details>
+  <summary>Screen Shots</summary>
+ 
+  ![Entry](https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/carbon/entry-carbon.png?raw=true) 
+  ![ConfigMenu](https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/carbon/config-carbon.png?raw=true)
+  ![ColorMenu](https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/carbon/color-carbon.png?raw=true)
+  ![TabMenu](https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/carbon/tabMenu-carbon.png?raw=true) 
+  ![HelpMenu](https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/carbon/help-carbon.png?raw=true) 
+  ![LogMenu](https://github.com/NotReeceHarris/SlimyTerminal/blob/main/assets/example/carbon/log-carbon.png?raw=true) 
+</details>
+
 ## ⚙️Setup
 SlimyTerminal is simple and portable meaning little requirement and no manual setup, config files are generated on first startup automatic and without manual assistance, to start SlimyTerminal just follow these simple steps: <br>
 
