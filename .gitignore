@@ -1,3 +1,13 @@
+# Sterm Assests
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+LICENSE
+README.md
+SECURITY.md
+VERSION
+assets
+.github
+
 # Config files
 .vscode
 config.json
