@@ -7,7 +7,7 @@ from utils.configMenu import configMenu
 from utils.versionControl import checkUpdate
 
 
-def commandHandle(i, __configPath__, __Version__):
+def commandHandle(i, __configPath__, __Version__, __logs__):
     if i.lower() == ':quit' or i.lower() == ':q': 
         exit()
 

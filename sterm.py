@@ -40,7 +40,7 @@ def start():
             print(' ')
 
         if i.startswith(':'):
-            commandHandle(i, __configPath__, __Version__)
+            commandHandle(i, __configPath__, __Version__, __logs__)
             
         elif i.startswith('cd'):
             try:
