@@ -21,6 +21,10 @@ def helpMenu(__configPath__, n):
         ┌────{color(config["terminalColor"])}Help{color("RESET")}─{color(config["terminalColor"])}Menu{color("RESET")}─[2/5]─────────────────────────────┐ 
         │    :g :github  -   Github repo                 │
         │    :v :version -   Slimy Terminal Version      │
+        │    ──────────────────────────────────────      │
+        │    :time       -   Current Date and time       │
+        │    :network    -   Network information         │
+        │    :ping [arg] -   Network information         │
         └────────────────────────────────────────────────┘
         ''')
 

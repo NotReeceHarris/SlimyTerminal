@@ -19,10 +19,12 @@ def checkUpdate(__Version__):
                     import requests
                     __clear__()
                     print(f'[{color("GREEN") + "+" + color("RESET")}] requests, Installed!')
+                    import psutil
+                    print(f'[{color("GREEN") + "+" + color("RESET")}] psutil, Installed!')
                     break
                 except:
 
-                    print('Update checking failed...')
+                    print('Pip install failed...')
                     break
 
             elif i.lower() == 'n':

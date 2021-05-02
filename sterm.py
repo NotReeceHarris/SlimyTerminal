@@ -11,7 +11,7 @@ from utils.versionControl import checkUpdate
 from utils.commands import commandHandle
 
 __logs__ = []
-__Version__ = '1.0'
+__Version__ = '1.1'
 __configPath__ = ''
 
 def start():
