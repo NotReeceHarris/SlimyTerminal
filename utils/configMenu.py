@@ -76,6 +76,7 @@ def configMenu(__configPath__):
         │    0 - Exit                                │
         └────────────────────────────────────────────┘
                         '''
+                        
                     while True:
                         try:
                             i = int(input(f'{menu}\n        > '))

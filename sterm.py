@@ -5,22 +5,14 @@ import json
 
 from utils.ui import color, __clear__, tabBroker, spacerBroker
 from utils.exitCodes import exitCodes
-from utils.helpMenu import helpMenu
+from utils.otherMenus import helpMenu, logsMenu
 from utils.configMenu import configMenu
 from utils.versionControl import checkUpdate
+from utils.commands import commandHandle
 
 __logs__ = []
 __Version__ = '1.0'
 __configPath__ = ''
-
-def logsMenu():
-
-    config = json.load(open(__configPath__))
-
-    print(f'        ┌────{color(config["terminalColor"])}Log{color("RESET")}─{color(config["terminalColor"])}Menu{color("RESET")}─────────────────────────────────────\n        │')
-    for x in __logs__:
-        print(f'        │ {x}')
-    print('        │\n        └─────────────────────────────────────────────────')
 
 def start():
 
@@ -34,44 +26,21 @@ def start():
         
 
         if __statusCode__ == '' or config['showExitCode'] == False:
-            i = str(input(f'''
-    {__spacer__}{__tabs__}
-    {__cursor__} '''))
+            i = str(input(f'''\n    {__spacer__}{__tabs__}\n    {__cursor__} '''))
 
         elif __statusCode__ != '' and config['showExitCode'] == True:
-            i = str(input(f'''
-    ┌───[ {color(config["terminalColor"]) + __statusCode__ + color('RESET')} ]
-    {__spacer__}{__tabs__}
-    └─> '''))
+            i = str(input(f'''\n    ┌───[ {color(config["terminalColor"]) + __statusCode__ + color('RESET')} ]\n    {__spacer__}{__tabs__}\n    └─> '''))
 
-        print(' ')
-
-        __logs__.append(str(i))
         __statusCode__ = ''
+        __statusRaw__ = ''
 
-        if config['clearEachCommand']: __clear__()
-
-        if i.lower() == ':quit' or i.lower() == ':q': 
-            break
-
-        elif i.lower() == ':help' or i.lower() == ':h': 
-            helpMenu(__configPath__)
-
-        elif i.lower() == ':logs' or i.lower() == ':l': 
-            logsMenu()
-
-        elif i.lower() == ':clear' or i == ':c': 
+        if config['clearEachCommand']: 
             __clear__()
+        else:
+            print(' ')
 
-        elif i.lower() == ':config' or i == ':C': 
-            configMenu(__configPath__)
-
-        elif i.lower() == ':github' or i.lower() == ':g': 
-            print('https://github.com/NotReeceHarris/SlimyTerminal')
-
-        elif i.lower() == ':version' or i.lower() == ':v': 
-            checkUpdate(__Version__)
-            print(f'Slimy Terminal: {__Version__}')
+        if i.startswith(':'):
+            commandHandle(i, __configPath__, __Version__)
             
         elif i.startswith('cd'):
             try:
@@ -82,9 +51,11 @@ def start():
 
                 __statusCode__ = 'Path not found (1)'
 
-
         else:
-            __statusCode__ = exitCodes(os.system(i), os.name)
+            __statusRaw__ = os.system(i)
+            __statusCode__ = exitCodes(__statusRaw__, os.name)
+
+        __logs__.append((str(i), __statusRaw__))
 
 if __name__ == '__main__':
     if os.name == 'nt':
@@ -109,5 +80,5 @@ if __name__ == '__main__':
 
     __clear__()
     checkUpdate(__Version__)
-    helpMenu(__configPath__)
+    helpMenu(__configPath__, 1)
     start()

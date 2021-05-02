@@ -21,14 +21,16 @@ def checkUpdate(__Version__):
                     print(f'[{color("GREEN") + "+" + color("RESET")}] requests, Installed!')
                     break
                 except:
+
                     print('Update checking failed...')
                     break
+
             elif i.lower() == 'n':
                 __clear__()
                 print('Update checking failed...')
                 break
+
             else:
                 __clear__()
                 print('Update checking failed...')
-
         time.sleep(0.5)
