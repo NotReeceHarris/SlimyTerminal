@@ -1,2 +1,2 @@
-requests==2.27.0
+requests==2.27.1
 psutil==5.8.0
